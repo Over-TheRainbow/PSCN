@@ -1,8 +1,8 @@
 "Patchy San"
 
-from networkx import nx
+import networkx as nx
 from networkx import convert_node_labels_to_integers
-from pynauty.graph import canonical_labeling,Graph
+from pynauty.graph import canon_label,Graph
 import copy
 from keras.wrappers.scikit_learn import KerasClassifier
 from keras.models import Model,Sequential
@@ -423,7 +423,7 @@ class ReceptiveFieldMaker():
         nauty_graph.set_adjacency_dict({n:list(nbrdict) for n,nbrdict in g_relabel.adjacency()})
 
         labels_dict=nx.get_node_attributes(g_relabel,'labeling')
-        canonical_labeling_dict={k:canonical_labeling(nauty_graph)[k] for k in range(len(g_relabel.nodes()))}
+        canonical_labeling_dict={k:canon_label(nauty_graph)[k] for k in range(len(g_relabel.nodes()))}
 
         new_ordered_dict=self.rank_label_wrt_dict(g_relabel,labels_dict,canonical_labeling_dict)
 
