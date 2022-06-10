@@ -16,8 +16,12 @@ class NoPathException(Exception):
 
 class Graph():
 
-    def __init__(self):
-        self.nx_graph=nx.Graph()
+
+    def __init__(self, g=None):
+        if g is None:
+            self.nx_graph=nx.Graph()
+        else:
+            self.nx_graph=g
         self.name='A graph as no name'
 
     def __eq__(self, other) : 
