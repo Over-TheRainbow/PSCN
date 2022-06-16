@@ -10,8 +10,8 @@ from keras.layers import Conv1D,Dense,Dropout,Flatten
 import numpy as np
 import time
 import tensorflow as tf
-#import utils
-from custom_errors import BadShapeError,BadAttriDimError,BadDummyValueDef
+import .utils
+from .custom_errors import BadShapeError,BadAttriDimError,BadDummyValueDef
 
 
 class PSCN():
