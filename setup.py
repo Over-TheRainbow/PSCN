@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="PSCN-Over-TheRainbow",
-    version="0.0.4",
+    version="0.0.5",
     author="Over-TheRainbow",
     author_email="chan.2019@alumni.ubc.ca",
     description="A small PSCN package, most of the code is from tvayer",
