@@ -4,7 +4,7 @@ import argparse
 import matplotlib.colors as mcol
 from matplotlib import cm
 import networkx as nx 
-from custom_errors import NotRepresentableError
+from .custom_errors import NotRepresentableError
 
 def indices_to_one_hot(number, nb_classes,label_dummy=-1):
     """Convert an iterable of indices to one-hot encoded labels."""
