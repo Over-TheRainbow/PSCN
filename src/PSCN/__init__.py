@@ -1,1 +1,1 @@
-from PSCN import custom_errors, graph, pscn, utils
+from . import custom_errors, graph, pscn, utils
