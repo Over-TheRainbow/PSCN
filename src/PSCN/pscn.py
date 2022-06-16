@@ -10,7 +10,7 @@ from keras.layers import Conv1D,Dense,Dropout,Flatten
 import numpy as np
 import time
 import tensorflow as tf
-import .utils
+from . import utils
 from .custom_errors import BadShapeError,BadAttriDimError,BadDummyValueDef
 
 
