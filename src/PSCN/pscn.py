@@ -193,6 +193,11 @@ class ReceptiveFieldMaker():
             self.dict_first_labeling=self.betweenness_centrality_labeling(self.nx_graph) 
             end=time.time()
             self.all_times['first_labeling_procedure'].append(end-st)   
+        elif self.labeling_procedure_name=='katz':
+            st=time.time()
+            self.dict_first_labeling=self.katz_centrality_labeling(self.nx_graph) 
+            end=time.time()
+            self.all_times['first_labeling_procedure'].append(end-st)   
         else :
             st=time.time()
             self.dict_first_labeling=self.labeling_procedure(self.nx_graph) 
@@ -223,6 +228,8 @@ class ReceptiveFieldMaker():
         st=time.time()
         if self.labeling_procedure_name=='betweeness':
             a=self.betweenness_centrality_labeling(graph)
+        elif self.labeling_procedure_name=='katz':
+            a=self.katz_centrality_labeling(graph)
         end=time.time()
         self.all_times['labeling_procedure'].append(end-st)
         return a
@@ -234,6 +241,27 @@ class ReceptiveFieldMaker():
             centrality=list(nx.betweenness_centrality(graph).items())
         else:
             centrality=list(nx.betweenness_centrality(graph,k=approx).items())
+        sorted_centrality=sorted(centrality,key=lambda n:n[1],reverse=True)
+        dict_={}
+        label=0
+        for t in sorted_centrality:
+            dict_[t[0]]=label
+            label+=1
+        nx.set_node_attributes(labeled_graph,dict_,'labeling')
+        ordered_nodes=list(zip(*sorted_centrality))[0]
+        
+        result['labeled_graph']=labeled_graph
+        result['sorted_centrality']=sorted_centrality
+        result['ordered_nodes']=ordered_nodes
+        return result
+    
+    def katz_centrality_labeling(self,graph,approx=None):
+        result={}
+        labeled_graph=nx.Graph(graph)
+        if approx is None:
+            centrality=list(nx.katz_centrality(graph).items())
+        else:
+            centrality=list(nx.katz_centrality(graph,k=approx).items())
         sorted_centrality=sorted(centrality,key=lambda n:n[1],reverse=True)
         dict_={}
         label=0
